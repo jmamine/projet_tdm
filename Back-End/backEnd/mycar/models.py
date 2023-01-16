@@ -9,8 +9,8 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     ifLogged = models.BooleanField(default=False)
     phonenumber= models.CharField(max_length=255, null=False)
-    permit=models.IntegerField()
-    credit_card=models.IntegerField()
+    permit=models.IntegerField(default='0')
+    credit_card=models.IntegerField(default='0')
     token = models.CharField(max_length=500, null=True, default="")
 
     def __str__(self):
@@ -19,7 +19,7 @@ class User(models.Model):
 
 
 
-class Car(models.Model):
+class car (models.Model):
     marque = models.CharField(max_length=255, null=False)
     image_marque = models.CharField(max_length=255, null=False)
     modele = models.CharField(max_length=255, null=False)
@@ -30,22 +30,22 @@ class Car(models.Model):
     y= models.FloatField()
     pic= models.CharField(max_length=255, null=False)
     price= models.FloatField()
-    Users = models.ManyToManyField(User, through='Reservation')
+    Users = models.ManyToManyField(User, through='reservation')
 
     def __str__(self):
         return "{} -{}".format(self.marque, self.modele)
 
 
 
-class Reservation(models.Model):
+class reservation(models.Model):
     User = models.ForeignKey(User,on_delete=models.CASCADE)
-    car = models.ForeignKey(Car,on_delete=models.CASCADE)
-    DateDebute = models.DateField()
-    DateFin = models.DateField()
-    Pin = models.IntegerField()
+    car = models.ForeignKey(car,on_delete=models.CASCADE)
+    DateDebute = models.CharField(max_length=255,default="")
+    DateFin = models.CharField(max_length=255 ,default="")
+    Pin = models.IntegerField(default=0)
 
     def __str__(self):
-        return "{} -{}".format(self.User, self.car)        
+        return "{} -{}".format(self.DateDebute, self.Pin)        
 
 
 
