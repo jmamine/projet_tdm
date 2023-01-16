@@ -37,8 +37,7 @@ def Registration(request):
    
     
     for object in user:
-        if object.ifLogged:
-            raise ValidationError("User already logged in.")
+        
         object.ifLogged = True
         object.token = uuid4()
         object.save()
