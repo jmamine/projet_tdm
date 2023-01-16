@@ -11,9 +11,43 @@ from uuid import uuid4
 import json
 from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
+def Registration(request):
+   
+    if request.method == 'POST':
+      username_test=request.POST.get('username')
+      email_test= request.POST.get('email')
+      password_test = request.POST.get('password')
+      phone_number_test=request.POST.get('phone_number')
+      credit_card_test=request.POST.get('credit_card')
+      permis_test=request.POST.get('permis')
 
 
 
+    if not email_test or not  password_test:
+            raise ValidationError("Details not entered.")
+
+    if not '@' in email_test:    
+         raise ValidationError("User credentials are not correct.")    
+            
+    user= User.objects.filter( email=email_test ).filter(password=password_test)
+   
+    if not user.exists():
+                raise ValidationError("User credentials are not correct.")
+   
+    
+    for object in user:
+        if object.ifLogged:
+            raise ValidationError("User already logged in.")
+        object.ifLogged = True
+        object.token = uuid4()
+        object.save()
+
+
+    data = serializers.serialize('json',  user ) 
+    return HttpResponse(data, content_type="text/json-comment-filtered")
+
+@csrf_exempt
 def Login(request):
    
     if request.method == 'POST':
@@ -46,7 +80,7 @@ def Login(request):
     return HttpResponse(data, content_type="text/json-comment-filtered")
 
 
-    
+@csrf_exempt    
 def Login(request):
    
     if request.method == 'POST':
@@ -78,10 +112,10 @@ def Login(request):
     data = serializers.serialize('json',  user ) 
     return HttpResponse(data, content_type="text/json-comment-filtered")
 
-
+@csrf_exempt
 def logout(request):
-     # get method handler
-    #  username_test='amine'
+     
+
      if request.method == 'POST':
       username_test= request.POST.get('username')
      user= User.objects.filter( username=username_test )

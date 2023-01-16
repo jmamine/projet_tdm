@@ -9,7 +9,7 @@ class User(models.Model):
     password = models.CharField(max_length=50)
     ifLogged = models.BooleanField(default=False)
     phonenumber= models.CharField(max_length=255, null=False)
-    permit=models.IntegerField(default='0')
+    permis=models.IntegerField(default='0')
     credit_card=models.IntegerField(default='0')
     token = models.CharField(max_length=500, null=True, default="")
 
