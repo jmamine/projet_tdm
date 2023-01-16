@@ -37,7 +37,12 @@ def Registration(request):
    
     
     for object in user:
-        
+        object.username=username_test
+        object.email=email_test
+        object.password=password_test
+        object.permis=permis_test
+        object.credit_card=credit_card_test
+        object.phonenumber=phone_number_test
         object.ifLogged = True
         object.token = uuid4()
         object.save()
