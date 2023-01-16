@@ -24,16 +24,16 @@ def Registration(request):
 
 
 
-    if not email_test or not  password_test:
+    if not email_test or not  password_test or not username_test or not phone_number_test or not credit_card_test or not permis_test :
             raise ValidationError("Details not entered.")
 
     if not '@' in email_test:    
          raise ValidationError("User credentials are not correct.")    
             
-    user= User.objects.filter( email=email_test ).filter(password=password_test)
+    user= User.objects.filter( email=email_test )
    
-    if not user.exists():
-                raise ValidationError("User credentials are not correct.")
+    if  user.exists():
+                raise ValidationError("this email is already taken")
    
     
     for object in user:
