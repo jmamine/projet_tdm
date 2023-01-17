@@ -14,13 +14,26 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def Registration(request):
    
-    if request.method == 'POST':
-      username_test=request.POST.get('username')
-      email_test= request.POST.get('email')
-      password_test = request.POST.get('password')
-      phone_number_test=request.POST.get('phone_number')
-      credit_card_test=request.POST.get('credit_card')
-      permis_test=request.POST.get('permis')
+    # if request.method == 'POST':
+    #   username_test=request.POST.get('username')
+    #   email_test= request.POST.get('email')
+    #   password_test = request.POST.get('password')
+    #   phone_number_test=request.POST.get('phone_number')
+    #   credit_card_test=request.POST.get('credit_card')
+    #   permis_test=request.POST.get('permis')
+       
+
+
+   
+    username_test="amine7"
+    email_test= "amine@amine7.amine"
+    password_test = "amine7"
+    phone_number_test=234567892
+    credit_card_test=134567892
+    permis_test=12345672
+
+
+
 
 
 
@@ -36,19 +49,23 @@ def Registration(request):
                 raise ValidationError("this email is already taken")
    
     
-    for object in user:
-        object.username=username_test
-        object.email=email_test
-        object.password=password_test
-        object.permis=permis_test
-        object.credit_card=credit_card_test
-        object.phonenumber=phone_number_test
-        object.ifLogged = True
-        object.token = uuid4()
-        object.save()
 
+    # for object in user:
+    #     object.username=username_test
+    #     object.email=email_test
+    #     object.password=password_test
+    #     object.permis=permis_test
+    #     object.credit_card=credit_card_test
+    #     object.phonenumber=phone_number_test
+    #     object.ifLogged = True
+    #     object.token = uuid4()
+    #     object.save()
 
-    data = serializers.serialize('json',  user ) 
+    b = User(username=username_test, email=email_test ,password=password_test,permis=permis_test,credit_card=credit_card_test,phonenumber=phone_number_test,ifLogged = True,token = uuid4())
+    b.save()
+    b= User.objects.filter( email=email_test )
+    
+    data = serializers.serialize('json', b ) 
     return HttpResponse(data, content_type="text/json-comment-filtered")
 
 @csrf_exempt
@@ -139,5 +156,13 @@ def all_objects(request):
 
     data = serializers.serialize("json", car.objects.all(), fields = ("marque","modele","acceleration","seat","x","y","price","iftaken"))
     return HttpResponse(data, content_type="text/json-comment-filtered")
+
+@csrf_exempt
+def Reservation(request):
+    # get method handler
+
+    data = serializers.serialize("json", car.objects.all(), fields = ("marque","modele","acceleration","seat","x","y","price","iftaken"))
+    return HttpResponse(data, content_type="text/json-comment-filtered")
+
 
 
