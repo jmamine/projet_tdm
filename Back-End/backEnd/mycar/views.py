@@ -158,6 +158,9 @@ def all_objects(request):
     data = serializers.serialize("json", car.objects.all(), fields = ("marque","modele","acceleration","seat","x","y","price","iftaken"))
     return HttpResponse(data, content_type="text/json-comment-filtered")
 
+
+
+# Mazal matastithach f postman
 @csrf_exempt
 def Reservation(request):
     
@@ -170,12 +173,48 @@ def Reservation(request):
     user_test = User.objects.get(pk=user_id)
     car_test = car.objects.get(pk=car_id) 
     new_reservation=reservation( User= user_test,car= car_test,DateDebute=date_debut ) 
-    
-
-
 
     
     return HttpResponse('done')
 
 
+@csrf_exempt
+def End_Reservation(request):
+    
+    if request.method == 'POST':
+      reservation_id= request.POST.get('reservation_id')
+
+    # Mazal makmlthach  
+    # PIN_test=uuid4()
+    # user_test = User.objects.get(pk=user_id)
+    # car_test = car.objects.get(pk=car_id) 
+    # new_reservation=reservation( User= user_test,car= car_test,DateDebute=date_debut ) 
+
+    
+    return HttpResponse('done')    
+
+
+# Mazal matastithach f postman
+@csrf_exempt
+def filter(request):
+     # get method handler
+     #  searched='IS'
+     if request.method == 'POST':
+      marque_test= request.POST.get('marque')
+      modele_test= request.POST.get('modele')
+      iftaken_test= request.POST.get('iftaken')
+      acceleration_test= request.POST.get('acceleration')
+      seat_test= request.POST.get('seat')
+      price_test= request.POST.get('price')
+      
+
+     list= car.objects.filter( marque__contains= marque_test).union(
+            car.objects.filter( modele__contains=modele_test).union(
+            car.objects.filter(iftaken__contains= iftaken_test).union(
+            car.objects.filter( acceleration__contains= acceleration_test).union(
+            car.objects.filter(seat__contains=seat_test).union(
+            car.objects.filter(price__contains=price_test))))))
+     
+     data = serializers.serialize('json',  list ) 
+     return HttpResponse(data, content_type="text/json-comment-filtered")
 
