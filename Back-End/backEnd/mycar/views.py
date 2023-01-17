@@ -14,23 +14,23 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def Registration(request):
    
-    # if request.method == 'POST':
-    #   username_test=request.POST.get('username')
-    #   email_test= request.POST.get('email')
-    #   password_test = request.POST.get('password')
-    #   phone_number_test=request.POST.get('phone_number')
-    #   credit_card_test=request.POST.get('credit_card')
-    #   permis_test=request.POST.get('permis')
+    if request.method == 'POST':
+      username_test=request.POST.get('username')
+      email_test= request.POST.get('email')
+      password_test = request.POST.get('password')
+      phone_number_test=request.POST.get('phone_number')
+      credit_card_test=request.POST.get('credit_card')
+      permis_test=request.POST.get('permis')
        
 
 
    
-    username_test="amine7"
-    email_test= "amine@amine7.amine"
-    password_test = "amine7"
-    phone_number_test=234567892
-    credit_card_test=134567892
-    permis_test=12345672
+    # username_test="amine7"
+    # email_test= "amine@amine7.amine"
+    # password_test = "amine7"
+    # phone_number_test=234567892
+    # credit_card_test=134567892
+    # permis_test=12345672
 
 
 
