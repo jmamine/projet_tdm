@@ -160,7 +160,14 @@ def all_objects(request):
 
 @csrf_exempt
 def Reservation(request):
-    # get method handler
+    
+    if request.method == 'POST':
+      car_id= request.POST.get('car_id')
+      user_id = request.POST.get('user_id')
+      date_debut=request.POST.get('date_debute')
+      
+    PIN=uuid4()
+      
 
     data = serializers.serialize("json", car.objects.all(), fields = ("marque","modele","acceleration","seat","x","y","price","iftaken"))
     return HttpResponse(data, content_type="text/json-comment-filtered")
