@@ -166,11 +166,16 @@ def Reservation(request):
       user_id = request.POST.get('user_id')
       date_debut=request.POST.get('date_debute')
       
-    PIN=uuid4()
-      
+    PIN_test=uuid4()
+    user_test = User.objects.get(pk=user_id)
+    car_test = car.objects.get(pk=car_id) 
+    new_reservation=reservation( User= user_test,car= car_test,DateDebute=date_debut ) 
+    
 
-    data = serializers.serialize("json", car.objects.all(), fields = ("marque","modele","acceleration","seat","x","y","price","iftaken"))
-    return HttpResponse(data, content_type="text/json-comment-filtered")
+
+
+    
+    return HttpResponse('done')
 
 
 
