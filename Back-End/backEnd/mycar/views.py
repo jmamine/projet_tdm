@@ -139,13 +139,14 @@ def logout(request):
 
      if request.method == 'POST':
       username_test= request.POST.get('username')
-     user= User.objects.filter( username=username_test )
+     user= User.objects.filter(username=username_test )
      for object in user:
         if not object.ifLogged:
                  raise ValidationError("User is not logged in.")
         object.ifLogged = False
         object.token = ""
         object.save()
+        
      return HttpResponse('User is logged out.')
      
 
