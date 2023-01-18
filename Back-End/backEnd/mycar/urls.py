@@ -11,7 +11,7 @@ path( 'all_objects/',views.all_objects,name='all_objects'),
 path( 'Registration/',views.Registration,name='Registration'),
 path('filter/',views.filter,name='filter'),
 path('resrvation/',views.Reservation,name='reservation'),
-path('EndReservation',views.End_Reservation,name='endreservation')
+path('EndReservation/',views.End_Reservation,name='endreservation')
 
 
 

@@ -172,7 +172,12 @@ def Reservation(request):
     PIN_test=uuid4()
     user_test = User.objects.get(pk=user_id)
     car_test = car.objects.get(pk=car_id) 
+    if  car_test.iftaken:
+                 raise ValidationError("already taken")
     new_reservation=reservation( User= user_test,car= car_test,DateDebute=date_debut ) 
+    new_reservation.save()
+    car_test.iftaken=True
+    car_test.save()
 
     
     return HttpResponse('done')
@@ -208,12 +213,41 @@ def filter(request):
       price_test= request.POST.get('price')
       
 
-     list= car.objects.filter( marque__contains= marque_test).union(
-            car.objects.filter( modele__contains=modele_test).union(
-            car.objects.filter(iftaken__contains= iftaken_test).union(
-            car.objects.filter( acceleration__contains= acceleration_test).union(
-            car.objects.filter(seat__contains=seat_test).union(
-            car.objects.filter(price__contains=price_test))))))
+     list1= car.objects.filter( marque__contains= marque_test)
+     list2=car.objects.filter( modele__contains=modele_test)
+     
+    #  list3=car.objects.filter(iftaken= iftaken_test)
+    #  list4=car.objects.filter( acceleration= acceleration_test)
+    #  list5=car.objects.filter(seat=seat_test)
+    #  list6=car.objects.filter(price=price_test)
+
+
+
+    #  list1= car.objects.filter( marque__contains= marque_test).intersection
+    #  car.objects.filter( modele__contains=modele_test)
+    #  car.objects.filter(iftaken__contains= iftaken_test)
+    #  car.objects.filter( acceleration__contains= acceleration_test)
+    #  car.objects.filter(seat__contains=seat_test)
+    #  car.objects.filter(price__contains=price_test)
+     
+
+       
+
+    #  list=list1.intersection(list2,list3,list4,list5,list6)
+     list=list1.intersection(list2)
+
+    #  list=list1.intersection(list1).intersection(list2).intersection(list3).intersection(list4).intersection(list5).intersection(list6)
+
+
+      # list= car.objects.filter( marque= marque_test).union(
+      #       car.objects.filter( modele=modele_test).union(
+      #       car.objects.filter(iftaken= iftaken_test).union(
+      #       car.objects.filter( acceleration= acceleration_test).union(
+      #       car.objects.filter(seat=seat_test).union(
+      #       car.objects.filter(price=price_test))))))      
+
+      # list= car.objects.filter( marque= marque_test,modele=modele_test,iftaken= iftaken_test,acceleration= acceleration_test,seat=seat_test,price=price_test)
+                  
      
      data = serializers.serialize('json',  list ) 
      return HttpResponse(data, content_type="text/json-comment-filtered")
