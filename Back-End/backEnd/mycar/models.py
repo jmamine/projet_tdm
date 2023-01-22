@@ -31,6 +31,7 @@ class car (models.Model):
     pic= models.CharField(max_length=255, null=False)
     price= models.FloatField()
     Users = models.ManyToManyField(User, through='reservation')
+    Pin = models.IntegerField(default=0)
 
     def __str__(self):
         return "{} -{}".format(self.marque, self.modele)
@@ -42,7 +43,7 @@ class reservation(models.Model):
     car = models.ForeignKey(car,on_delete=models.CASCADE)
     DateDebute = models.CharField(max_length=255,default="")
     DateFin = models.CharField(max_length=255 ,default="")
-    Pin = models.IntegerField(default=0)
+    
 
     def __str__(self):
         return "{} -{}".format(self.DateDebute, self.Pin)        

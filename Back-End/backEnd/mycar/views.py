@@ -177,6 +177,7 @@ def Reservation(request):
     new_reservation=reservation( User= user_test,car= car_test,DateDebute=date_debut ) 
     new_reservation.save()
     car_test.iftaken=True
+    car_test.Pin=PIN_test
     car_test.save()
 
     
@@ -187,7 +188,9 @@ def Reservation(request):
 def End_Reservation(request):
     
     if request.method == 'POST':
-      reservation_id= request.POST.get('reservation_id')
+      reservation_id_test= request.POST.get('reservation_id')
+    reservation_test = reservation.objects.get(pk=reservation_id_test)
+
 
     # Mazal makmlthach  
     # PIN_test=uuid4()
