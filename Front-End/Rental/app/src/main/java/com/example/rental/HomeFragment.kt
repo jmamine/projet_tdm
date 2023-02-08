@@ -9,6 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.*
+import sendGetRequest
 
 
 class HomeFragment : Fragment() {
@@ -37,8 +41,12 @@ class HomeFragment : Fragment() {
         viewCars.layoutManager = layoutManagerCars
         viewCars.adapter = CarAdapter(requireContext(), vmCars.data)
         val hh = requireActivity().findViewById<TextView>(R.id.hh)
+        val response = sendGetRequest("127.0.0.1:8000:simple/")
+        hh.text = response
 
 
     }
+
+
 
 }
