@@ -10,6 +10,8 @@ from django.core.exceptions import ValidationError
 from uuid import uuid4
 import json
 from django.views.decorators.csrf import csrf_exempt
+import os
+from django.conf import settings
 
 @csrf_exempt
 def Registration(request):
@@ -255,3 +257,20 @@ def filter(request):
      data = serializers.serialize('json',  list ) 
      return HttpResponse(data, content_type="text/json-comment-filtered")
 
+# @csrf_exempt
+# def get_image(request):
+#     # if request.method == 'POST':
+#     #   image_name= request.POST.get('marque')
+#     # image_path = os.path.join('static/images', image_name)
+#     with open('image\ ', 'mercedes') as f:
+#         image = f.read()
+
+#     return HttpResponse(image, content_type='image/jpeg')
+@csrf_exempt
+def get_image(request):
+    if request.method == 'POST':
+      image_url_test= request.POST.get('image_url')
+    image_path = os.path.join(settings.BASE_DIR, image_url_test)
+    with open(image_path, "rb") as f:
+        image = f.read()
+    return HttpResponse(image, content_type="image/jpeg")

@@ -32,6 +32,8 @@ class car (models.Model):
     price= models.FloatField()
     Users = models.ManyToManyField(User, through='reservation')
     Pin = models.IntegerField(default=0)
+    image_car_url = models.CharField(max_length=200,default='')
+    image_mark_url = models.CharField(max_length=200,default='')
 
     def __str__(self):
         return "{} -{}".format(self.marque, self.modele)
@@ -46,7 +48,7 @@ class reservation(models.Model):
     
 
     def __str__(self):
-        return "{} -{}".format(self.DateDebute, self.Pin)        
+        return "{} -{}".format(self.User,self.car)        
 
 
 
