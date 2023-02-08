@@ -150,7 +150,10 @@ def logout(request):
         object.save()
         
      return HttpResponse('User is logged out.')
-     
+
+@csrf_exempt
+def simple(request):   
+    return HttpResponse('it works')     
 
 
 @csrf_exempt
