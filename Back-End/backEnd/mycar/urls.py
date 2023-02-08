@@ -12,7 +12,8 @@ path( 'Registration/',views.Registration,name='Registration'),
 path('filter/',views.filter,name='filter'),
 path('resrvation/',views.Reservation,name='reservation'),
 path('EndReservation/',views.End_Reservation,name='endreservation'),
-path('image/',views.get_image,name='get_image')
+path('image/',views.get_image,name='get_image'),
+path('simple/',views.simple,name='simple'),
 
 
 
