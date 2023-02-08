@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.*
 import sendGetRequest
+import kotlinx.coroutines.*
 
 
 class HomeFragment : Fragment() {
@@ -41,8 +42,17 @@ class HomeFragment : Fragment() {
         viewCars.layoutManager = layoutManagerCars
         viewCars.adapter = CarAdapter(requireContext(), vmCars.data)
         val hh = requireActivity().findViewById<TextView>(R.id.hh)
-        val response = sendGetRequest("127.0.0.1:8000:simple/")
-        hh.text = response
+            //val response = sendGetRequest("http://localhost:8000/simple/")
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val response = sendGetRequest("http://127.0.0.1:9000/simple/")
+            withContext(Dispatchers.Main) {
+                // Update the UI with the result
+                hh.text = response
+            }
+        }
+
+
 
 
     }
