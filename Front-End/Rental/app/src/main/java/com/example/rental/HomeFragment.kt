@@ -19,10 +19,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.*
 import sendGetRequest
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of df4633c (test1)
 
 
 class HomeFragment : Fragment() {
@@ -51,8 +48,7 @@ class HomeFragment : Fragment() {
         val layoutManagerCars = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         viewCars.layoutManager = layoutManagerCars
         viewCars.adapter = CarAdapter(requireContext(), vmCars.data)
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         val brand = requireActivity().findViewById<TextView>(R.id.brand)
 
         viewCars.setOnClickListener{
@@ -82,19 +78,13 @@ class HomeFragment : Fragment() {
 //
 //        }
 
-=======
         val hh = requireActivity().findViewById<TextView>(R.id.hh)
         val response = sendGetRequest("127.0.0.1:8000:simple/")
         hh.text = response
->>>>>>> parent of df4633c (test1)
 
 
 
-=======
-        val hh = requireActivity().findViewById<TextView>(R.id.hh)
-        val response = sendGetRequest("127.0.0.1:8000:simple/")
-        hh.text = response
->>>>>>> parent of df4633c (test1)
+
 
 
     }
