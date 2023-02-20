@@ -14,7 +14,6 @@ class MoreFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val hh = requireActivity().findViewById<RecyclerView>(R.id.haha)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_more, container, false)
     }

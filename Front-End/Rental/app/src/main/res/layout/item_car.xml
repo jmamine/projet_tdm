@@ -36,14 +36,15 @@
             />
         <TextView
             android:id="@+id/distance"
-            android:text="507 m"
+            android:text="@string/_507_m"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/grayy"/>
         <ImageView
             android:id="@+id/item_car_image"
             android:layout_below="@+id/item_logo"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="130dp"
             android:layout_marginTop="-15dp"
             android:src="@drawable/tesla"
