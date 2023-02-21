@@ -12,12 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.*
-import sendGetRequest
 import kotlinx.coroutines.*
 
-
 class HomeFragment : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,21 +39,21 @@ class HomeFragment : Fragment() {
         viewCars.layoutManager = layoutManagerCars
         viewCars.adapter = CarAdapter(requireContext(), vmCars.data)
         val hh = requireActivity().findViewById<TextView>(R.id.hh)
-            //val response = sendGetRequest("http://localhost:8000/simple/")
 
         GlobalScope.launch(Dispatchers.IO) {
-            val response = sendGetRequest("http://127.0.0.1:9000/simple/")
+            val response = sendGetRequest("http://localhost:9000/simple/")
             withContext(Dispatchers.Main) {
                 // Update the UI with the result
                 hh.text = response
             }
         }
-
-
-
-
     }
 
-
-
+    @DelicateCoroutinesApi
+    private fun sendGetRequest(url: String): String {
+        val client = OkHttpClient()
+        val request = Request.Builder().url(url).build()
+        val response = client.newCall(request).execute()
+        return response.body.string()
+    }
 }
