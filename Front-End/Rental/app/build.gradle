@@ -46,6 +46,7 @@ dependencies {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     // Kotlin Corountines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
@@ -64,6 +65,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:retrofit:2.9.0'
 >>>>>>> parent of df4633c (test1)
+=======
+>>>>>>> parent of e2d6b52 (last)
 
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
 
