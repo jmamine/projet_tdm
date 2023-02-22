@@ -32,11 +32,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getcar()
 
-      //  val vm = MarqueModel()
-      //  val view = requireActivity().findViewById<RecyclerView>(R.id.rvBrands)
-      //  val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-      //  view.layoutManager = layoutManager
-      //  view.adapter = MarqueAdapter(requireContext(), vm.data)
+        val vm = MarqueModel()
+        val view = requireActivity().findViewById<RecyclerView>(R.id.rvBrands)
+        val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        view.layoutManager = layoutManager
+        view.adapter = MarqueAdapter(requireContext(), vm.data)
 
 
         //val hh = requireActivity().findViewById<TextView>(R.id.brand)
