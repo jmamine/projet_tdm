@@ -13,12 +13,12 @@ import org.json.JSONObject
 //     return response.body.toString()
 // }
 
-// fun sendGetRequest(url: String): String {
-//     val client = OkHttpClient()
-//     val request = Request.Builder().url(url).build()
-//     val response = client.newCall(request).execute()
-//     return response.body?.string() ?: ""
-// }
+ fun sendGetRequest(url: String): String {
+     val client = OkHttpClient()
+     val request = Request.Builder().url(url).build()
+     val response = client.newCall(request).execute()
+     return response.body?.string() ?: ""
+ }
 fun sendLoginRequest(url: String, email: String, password: String): String {
    val client = OkHttpClient()
 

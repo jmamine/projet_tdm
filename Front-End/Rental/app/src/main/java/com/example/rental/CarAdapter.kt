@@ -10,23 +10,25 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
-class CarAdapter(val context: Context,var data:List<Car>):RecyclerView.Adapter<CarAdapter.MyViewHolder>()
+//var data:List<Car>
+class CarAdapter(val context: Context,val homeFeed: CarList):RecyclerView.Adapter<CarAdapter.MyViewHolder>()
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_car, parent, false))
 
     }
 
-    override fun getItemCount() = data.size
+    override fun getItemCount() = homeFeed.cars.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.apply {
-            val vm = CarModel()
-            var item = vm.data[position]
+//            val vm = CarModel()
+//            var item = vm.data[position]
+            val data = homeFeed.cars
             item_marque.text = data[position].marque
             item_modele.text = data[position].modele
-            item_car_image.setImageResource(item.pic)
-            item_logo.setImageResource(item.image_marque)
+//            item_car_image.setImageResource(item.pic)
+//            item_logo.setImageResource(item.image_marque)
             item_tarif.text = data[position].price.toString()
         }
 //
