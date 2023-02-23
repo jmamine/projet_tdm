@@ -17,7 +17,7 @@ import okhttp3.*
 import sendGetRequest
 import kotlinx.coroutines.*
 import com.example.rental.Car
-import com.example.rental.CarList
+//import com.example.rental.CarList
 import com.google.gson.JsonParser
 //import sendLoginRequest
 
