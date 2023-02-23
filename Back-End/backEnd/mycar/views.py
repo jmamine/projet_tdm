@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import email
+
 from urllib import response
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -159,9 +160,20 @@ def simple(request):
 @csrf_exempt
 def all_objects(request):
     # get method handler
+    cars = car.objects.all()
+    data = serializers.serialize("json", cars, fields=("marque", "modele", "acceleration", "seat", "x", "y", "price", "iftaken"))
 
-    data = serializers.serialize("json", car.objects.all(), fields = ("marque","modele","acceleration","seat","x","y","price","iftaken"))
-    return HttpResponse(data, content_type="text/json-comment-filtered")
+    # Process the serialized data to convert to the desired format
+    json_data = [dict(pk=obj['pk'], **obj['fields']) for obj in json.loads(data)]
+
+    return JsonResponse(json_data, safe=False)
+
+# @csrf_exempt
+# def all_objects(request):
+#     # get method handler
+
+#     data = serializers.serialize("json", car.objects.all(), fields = ("marque","modele","acceleration","seat","x","y","price","iftaken"))
+#     return HttpResponse(data, content_type="text/json-comment-filtered")
 
 
 
@@ -277,3 +289,17 @@ def get_image(request):
     with open(image_path, "rb") as f:
         image = f.read()
     return HttpResponse(image, content_type="image/jpeg")
+
+
+
+
+# class CustomCarSerializer(ModelSerializer):
+#     class Meta:
+#         model = car
+#         fields = '__all__'
+
+#     def to_representation(self, instance):
+#         data = super().to_representation(instance)
+#         data.pop('model')
+#         data.pop('fields')
+#         return data    
