@@ -17,7 +17,7 @@ import okhttp3.*
 import sendGetRequest
 import kotlinx.coroutines.*
 import com.example.rental.Car
-import com.example.rental.CarList
+//import com.example.rental.CarList
 import com.google.gson.JsonParser
 //import sendLoginRequest
 
@@ -86,4 +86,13 @@ class HomeFragment : Fragment() {
 
 
 }
+
+    fun abdou(){
+        GlobalScope.launch(Dispatchers.IO) {GlobalScope.launch(Dispatchers.IO) {
+            val response = sendGetRequest(" https://05ad-105-235-129-141.eu.ngrok.io/all_objects/")
+
+
+        }
+        }
+    }
 }
