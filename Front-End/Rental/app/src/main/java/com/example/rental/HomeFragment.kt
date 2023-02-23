@@ -45,6 +45,12 @@ class HomeFragment : Fragment() {
         view.layoutManager = layoutManager
         view.adapter = MarqueAdapter(requireContext(), vm.data)
 
+        val vp = CarModel()
+        val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
+        val layoutManagerCars = GridLayoutManager(requireContext(), 2)
+        viewCars.layoutManager = layoutManagerCars
+        viewCars.adapter = CarAdapter(requireContext(), vp.data)
+
 
         //val hh = requireActivity().findViewById<TextView>(R.id.brand)
             //val response = sendGetRequest("http://localhost:8000/simple/")
