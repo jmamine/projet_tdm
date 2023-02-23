@@ -25,7 +25,7 @@ class CarAdapter(val context: Context,var data:List<Car>):RecyclerView.Adapter<C
             item_modele.text = data[position].modele
             item_car_image.setImageResource(R.drawable.tesla)
             item_logo.setImageResource(R.drawable.merc)
-            item_tarif.text = data[position].tarif
+            //item_tarif.text = data[position].tarif
         }
 //
 //        holder.itemView.setOnClickListener { view: View ->
