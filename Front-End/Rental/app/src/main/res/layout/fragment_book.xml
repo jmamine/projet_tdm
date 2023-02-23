@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MoreFragment"
+    android:background="@color/gray">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/book_top_confirmation_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Confirmation"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/book_ready_to_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_top_confirmation_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Ready to start"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/book_amazing_trip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_ready_to_start"
+            android:layout_centerHorizontal="true"
+            android:text="your next amazing trip ?"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/book_check_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_amazing_trip"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:text="Check your data,"
+            android:textColor="@color/grayy"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/book_and_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_check_data"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="confirm the order, and enjoy"
+            android:textColor="@color/grayy"
+            android:textSize="15sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/book_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/book_and_confirm"
+            android:layout_marginTop="30dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="-5dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp">
+
+                <LinearLayout
+                    android:id="@+id/book_car_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true">
+
+                    <TextView
+                        android:id="@+id/book_marque"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Tesla"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/book_modele"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="3dp"
+                        android:text="Model 3"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/book_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/book_car_linear"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/book_location_icon"
+                        android:layout_width="32dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="5dp"
+                        android:outlineAmbientShadowColor="@color/grayy"
+                        android:src="@drawable/location" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="Algeria, El harrach, Bouraoui Amar"
+                        android:textAlignment="center"
+                        android:textColor="@color/grayy" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/book_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/book_linear"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:text="130$"
+                    android:textColor="@color/Prime"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/item_perday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/book_linear"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_toEndOf="@+id/book_price"
+                    android:text="/Day"
+                    android:textColor="@color/grayy"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/book_pay_cv"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@+id/book_price"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="8dp"
+                    app:strokeColor="@color/grayyy"
+                    app:strokeWidth="1.5dp">
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/book_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="28 Oct 2022 - 4 Nov 2222"
+                    android:layout_below="@+id/book_pay_cv"
+                    android:textSize="16sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/book_pay_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm and pay"
+            app:cornerRadius="30dp"
+            android:layout_below="@id/book_card_view"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"/>
+        <ImageView
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/city_road"
+            android:layout_below="@+id/book_pay_button"/>
+
+    </RelativeLayout>
+</RelativeLayout>

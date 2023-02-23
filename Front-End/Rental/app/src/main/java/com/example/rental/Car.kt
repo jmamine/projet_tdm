@@ -1,8 +1,13 @@
 package com.example.rental
 
 data class Car (val marque:String,
+                val image_marque:Int,
                 val modele:String,
-                var carImage:Int=0,
-                var logo:Int=0,
-                val tarif:String,
-                val disponibilite:Boolean,)
+                val iftaken:Boolean,
+                val acceleration:String,
+                val seat:Float,
+                val x:Float,
+                val y:Float,
+                val pic:Int,
+                val price:Float,
+                val pin:Int,)

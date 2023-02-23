@@ -33,5 +33,13 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.rental.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="com.example.rental.BookFragment"
+        android:label="BookFragment" />
 </navigation>

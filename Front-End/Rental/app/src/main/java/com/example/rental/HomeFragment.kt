@@ -30,13 +30,18 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getcar()
 
         val vm = MarqueModel()
         val view = requireActivity().findViewById<RecyclerView>(R.id.rvBrands)
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         view.layoutManager = layoutManager
         view.adapter = MarqueAdapter(requireContext(), vm.data)
+
+        val vp = CarModel()
+        val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
+        val layoutManagerCars = GridLayoutManager(requireContext(), 2)
+        viewCars.layoutManager = layoutManagerCars
+        viewCars.adapter = CarAdapter(requireContext(), vp.data)
 
 
         //val hh = requireActivity().findViewById<TextView>(R.id.brand)
@@ -52,27 +57,27 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun getcar(){
-
-        GlobalScope.launch(Dispatchers.IO) {GlobalScope.launch(Dispatchers.IO) {
-            val response = sendGetRequest("https://0382-105-235-130-147.eu.ngrok.io/all_objects/")
-            withContext(Dispatchers.Main) {
-                // Update the UI with the result
-
-                val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
-                val layoutManagerCars = GridLayoutManager(requireContext(), 2)
-                viewCars.layoutManager = layoutManagerCars
-                viewCars.adapter = CarAdapter(requireContext(), response as ArrayList<Car>)
-            }
-        }
-
-
-
-
-
-    }
-
-
-
-}
+//    private fun getcar(){
+//
+//        GlobalScope.launch(Dispatchers.IO) {GlobalScope.launch(Dispatchers.IO) {
+//            val response = sendGetRequest("https://0382-105-235-130-147.eu.ngrok.io/all_objects/")
+//            withContext(Dispatchers.Main) {
+//                // Update the UI with the result
+//
+//                val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
+//                val layoutManagerCars = GridLayoutManager(requireContext(), 2)
+//                viewCars.layoutManager = layoutManagerCars
+//                viewCars.adapter = CarAdapter(requireContext(), response as ArrayList<Car>)
+//            }
+//        }
+//
+//
+//
+//
+//
+//    }
+//
+//
+//
+//}
 }

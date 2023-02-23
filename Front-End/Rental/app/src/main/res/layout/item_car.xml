@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="160dp"
+        android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
@@ -39,11 +39,12 @@
             android:text="507 m"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/white"/>
         <ImageView
             android:id="@+id/item_car_image"
             android:layout_below="@+id/item_logo"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="130dp"
             android:layout_marginTop="-15dp"
             android:src="@drawable/tesla"
@@ -55,7 +56,7 @@
             android:layout_below="@+id/item_car_image"
             android:text="Tesla"
             android:textStyle="bold"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:textColor="@color/black"
             android:layout_marginTop="-37dp"
             />
@@ -67,7 +68,7 @@
             android:layout_toEndOf="@+id/item_marque"
             android:text="Model 3"
             android:textStyle="bold"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:textColor="@color/black"
             android:layout_marginTop="-37dp"
             android:layout_marginStart="3.5dp"
@@ -79,7 +80,7 @@
             android:layout_below="@+id/item_marque"
             android:text="130$"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:layout_marginTop="5dp"
             android:textColor="@color/Prime"
             />
@@ -89,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/item_tarif"
             android:layout_below="@+id/item_marque"
-            android:text="/ Day"
+            android:text="/Day"
             android:textStyle="bold"
             android:textSize="15sp"
             android:layout_marginStart="2dp"
@@ -103,10 +104,9 @@
         android:layout_height="30dp"
         android:background="@drawable/hh"
         android:src="@drawable/loginarrow"
-        android:layout_toEndOf="@+id/item_perday"
         android:layout_marginTop="-15dp"
-        android:layout_marginStart="30dp"
         android:layout_below="@+id/item_marque"
+            android:layout_alignParentEnd="true"
             />
 
     </RelativeLayout>

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 class CarAdapter(val context: Context,var data:List<Car>):RecyclerView.Adapter<CarAdapter.MyViewHolder>()
@@ -19,19 +21,19 @@ class CarAdapter(val context: Context,var data:List<Car>):RecyclerView.Adapter<C
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.apply {
-            val vm = MarqueModel()
+            val vm = CarModel()
             var item = vm.data[position]
             item_marque.text = data[position].marque
             item_modele.text = data[position].modele
-            item_car_image.setImageResource(R.drawable.tesla)
-            item_logo.setImageResource(R.drawable.merc)
-            item_tarif.text = data[position].tarif
+            item_car_image.setImageResource(item.pic)
+            item_logo.setImageResource(item.image_marque)
+            item_tarif.text = data[position].price.toString()
         }
 //
-//        holder.itemView.setOnClickListener { view: View ->
-//            val bundle = bundleOf("position" to position)
-//            view.findNavController().navigate(R.id.action_mainFragment_to_detailFragment,bundle)
-//        }
+        holder.itemView.setOnClickListener { view: View ->
+            val bundle = bundleOf("position" to position)
+            view.findNavController().navigate(R.id.action_homeFragment_to_detailsFragment,bundle)
+        }
 
 
 
