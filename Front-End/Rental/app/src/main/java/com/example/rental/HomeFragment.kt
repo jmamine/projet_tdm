@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -86,11 +87,17 @@ class HomeFragment : Fragment() {
             val response = sendGetRequest(" https://05ad-105-235-129-141.eu.ngrok.io/all_objects/")
 
             val gson = GsonBuilder().create()
-            val cars = gson.fromJson(response, CarList::class.java)
-            val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
-            val layoutManagerCars = GridLayoutManager(requireContext(), 2)
-            viewCars.layoutManager = layoutManagerCars
-            viewCars.adapter = CarAdapter(requireContext(), cars)
+            val jsonStringWithBraces = "{ \"result\": $response}"
+            val cars = gson.fromJson(jsonStringWithBraces, CarList::class.java)
+
+            withContext(Dispatchers.Main) {
+                val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
+                val layoutManagerCars = GridLayoutManager(requireContext(), 2)
+                viewCars.layoutManager = layoutManagerCars
+                viewCars.adapter = CarAdapter(requireContext(), cars)
+                Toast.makeText(context,cars.cars[1].marque,Toast.LENGTH_LONG).show()
+            }
+
 
 
 

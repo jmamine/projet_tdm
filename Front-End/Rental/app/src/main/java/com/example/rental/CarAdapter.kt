@@ -18,7 +18,7 @@ class CarAdapter(val context: Context,val homeFeed: CarList):RecyclerView.Adapte
 
     }
 
-    override fun getItemCount() = homeFeed.cars.size
+    override fun getItemCount() = homeFeed.cars.count()
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.apply {
