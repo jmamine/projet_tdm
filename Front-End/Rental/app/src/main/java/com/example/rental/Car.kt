@@ -11,3 +11,7 @@ data class Car (val marque:String,
                 val pic:Int,
                 val price:Float,
                 val pin:Int,)
+
+
+
+// {"pk": 1, "marque": "marque1", "modele": "modele1", "iftaken": true, "acceleration": "200", "seat": 4, "x": 100.0, "y": 100.0, "price": 1000.0}                
