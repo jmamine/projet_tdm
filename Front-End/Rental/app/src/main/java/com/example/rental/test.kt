@@ -36,9 +36,9 @@
 //     return response.body?.string() ?: ""
 // }
 
-import com.example.rental.User
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
+//import com.example.rental.User
+//import okhttp3.FormBody
+//import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -75,3 +75,30 @@ fun sendLoginRequest(url: String, email: String, password: String): String {
 
     return response.body() ?: ""
 }
+interface ApiServicereservation {
+    @FormUrlEncoded
+    @POST
+    fun sendreservationRequest(
+        @Url url: String,
+        @Field("car_id") car_id: String,
+        @Field("user_email") user_email: String,
+        @Field("date_debute") date_debut: String
+    ): Call<String>
+}
+
+fun sendreservationRequest(url: String, car_id: String, user_email: String, date_debut: String): String {
+    val retrofit = Retrofit.Builder()
+        .baseUrl(url)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .build()
+
+    val apiService = retrofit.create(ApiServicereservation::class.java)
+
+    val call = apiService.sendreservationRequest(url, car_id, user_email, date_debut)
+
+    val response = call.execute()
+
+    return response.body() ?: ""
+}
+
+
