@@ -2,6 +2,7 @@ package com.example.rental
 
 //import sendGetRequest
 //import com.example.rental.CarList
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,12 +16,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.*
 import okio.IOException
+import sendLoginRequest
+import sendcarsRequest
 
 
 // import sendLoginRequest
@@ -39,30 +39,36 @@ class NotifFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val url = "https://47e7-41-220-149-145.eu.ngrok.io/resrvation"
+        val user_data=requireActivity().intent.getStringExtra("email")
 
 
-        book()
+        if (user_data != null) {
 
+            book(url, user_data)
+        }
 
 
     }
 
-    fun book(){
+    fun book(url: String, email: String){
         CoroutineScope(Dispatchers.IO).launch {
-
-//            val response = RetrofitService.endpoint.getCar()
-
+            val response = sendcarsRequest(url, email)
+            val gson = Gson()
+            val carList = gson.fromJson(response, Array<Book>::class.java)?.toList()
             withContext(Dispatchers.Main){
+                if(carList.isSuccessful){
+                    val car = response.body()
+                    if (car != null){
 
-                if(response.isSuccessful){
-                    val book = response.body()
-
-                    if (book != null){
-
-                        val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvBooks)
-                        val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-                        viewCars.layoutManager = layoutManager
-                        viewCars.adapter = CarAdapter(requireContext(), book as ArrayList<Car>)
+                        /* val adapter = MyAdapter(requireActivity(),car)
+                         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+                         binding.recyclerView.adapter = adapter
+                         */
+                        val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
+                        val layoutManagerCars = GridLayoutManager(requireContext(), 2)
+                        viewCars.layoutManager = layoutManagerCars
+                        viewCars.adapter = CarAdapter(requireContext(), car as ArrayList<Car>)
 
                     }
                     else{
@@ -75,6 +81,8 @@ class NotifFragment : Fragment() {
 
             }
         }
+
+
     }
 
 }
