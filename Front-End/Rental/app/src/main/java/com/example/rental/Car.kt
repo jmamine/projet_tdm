@@ -20,6 +20,7 @@ data class Car (val pk:Int,
                 val x:Float,
                 val y:Float,
                 val price:Float,)
+    :java.io.Serializable
 
 
 
