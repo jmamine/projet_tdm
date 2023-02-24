@@ -101,5 +101,75 @@ fun sendreservationRequest(url: String, car_id: String, user_email: String, date
 
     return response.body() ?: ""
 }
+interface ApiServicecars {
+    @FormUrlEncoded
+    @POST
+    fun sendcarsRequest(
+        @Url url: String,
+        @Field("user_email") user_email: String,
+    ): Call<String>
+}
+
+fun sendcarsRequest(url: String, user_email: String): String {
+    val retrofit = Retrofit.Builder()
+        .baseUrl(url)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .build()
+
+    val apiService = retrofit.create(ApiServicecars::class.java)
+
+    val call = apiService.sendcarsRequest(url, user_email)
+
+    val response = call.execute()
+
+    return response.body() ?: ""
+}
+
+interface ApiServicehistorique {
+    @FormUrlEncoded
+    @POST
+    fun sendhistoriqueRequest(
+        @Url url: String,
+        @Field("user_email") user_email: String,
+    ): Call<String>
+}
+
+fun sendhistoriqueRequest(url: String, user_email: String): String {
+    val retrofit = Retrofit.Builder()
+        .baseUrl(url)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .build()
+
+    val apiService = retrofit.create(ApiServicehistorique::class.java)
+
+    val call = apiService.sendhistoriqueRequest(url, user_email)
+
+    val response = call.execute()
+
+    return response.body() ?: ""
+}
+interface ApiServiceEnd_Reservation {
+    @FormUrlEncoded
+    @POST
+    fun sendEnd_ReservationRequest(
+        @Url url: String,
+        @Field("user_email") user_email: String,
+    ): Call<String>
+}
+
+fun sendEnd_ReservationRequest(url: String, user_email: String): String {
+    val retrofit = Retrofit.Builder()
+        .baseUrl(url)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .build()
+
+    val apiService = retrofit.create(ApiServiceEnd_Reservation::class.java)
+
+    val call = apiService.sendEnd_ReservationRequest(url, user_email)
+
+    val response = call.execute()
+
+    return response.body() ?: ""
+}
 
 
