@@ -2,6 +2,7 @@ from dataclasses import dataclass
 import email
 
 from urllib import response
+import random
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import User , car ,reservation
@@ -190,22 +191,24 @@ def Reservation(request):
     
     if request.method == 'POST':
       car_id= request.POST.get('car_id')
-      user_id = request.POST.get('user_id')
+      user_email = request.POST.get('user_email')
       date_debut=request.POST.get('date_debute')
       
-    PIN_test=uuid4()
-    user_test = User.objects.get(pk=user_id)
+    PIN= random.randint(0, 9999)
+    user_test = User.objects.get(email=user_email)
     car_test = car.objects.get(pk=car_id) 
     if  car_test.iftaken:
                  raise ValidationError("already taken")
     new_reservation=reservation( User= user_test,car= car_test,DateDebute=date_debut ) 
     new_reservation.save()
+    
+
     car_test.iftaken=True
-    car_test.Pin=PIN_test
+    car_test.Pin=PIN
     car_test.save()
 
     
-    return HttpResponse('done')
+    return HttpResponse(PIN)
 
 
 @csrf_exempt
@@ -213,7 +216,20 @@ def End_Reservation(request):
     
     if request.method == 'POST':
       reservation_id_test= request.POST.get('reservation_id')
+      date_fin=request.POST.get('date_fin')
+
     reservation_test = reservation.objects.get(pk=reservation_id_test)
+    for object in reservation_test:
+        object.DateFin = date_fin
+        object.save()
+
+    car_test=reservation_test.car
+    car_test.Pin=None
+    car_test.save()
+    
+
+
+        
 
 
     # Mazal makmlthach  

@@ -31,7 +31,7 @@ class car (models.Model):
     pic= models.CharField(max_length=255, null=False)
     price= models.FloatField()
     Users = models.ManyToManyField(User, through='reservation')
-    Pin = models.IntegerField(default=0)
+    Pin = models.CharField(max_length=255,default='',null=True)
     image_car_url = models.CharField(max_length=200,default='')
     image_mark_url = models.CharField(max_length=200,default='')
 
