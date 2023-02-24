@@ -42,4 +42,12 @@
         android:id="@+id/bookFragment"
         android:name="com.example.rental.BookFragment"
         android:label="BookFragment" />
+    <dialog
+        android:id="@+id/popUpFragment"
+        android:name="com.example.rental.PopUpFragment"
+        android:label="PopUpFragment" >
+        <action
+            android:id="@+id/action_popUpFragment_to_notifFragment"
+            app:destination="@id/notifFragment" />
+    </dialog>
 </navigation>

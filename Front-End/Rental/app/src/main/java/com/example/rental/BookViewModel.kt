@@ -8,5 +8,5 @@ class BookViewModel : ViewModel() {
     val marque = MutableLiveData<String>()
     val modele = MutableLiveData<String>()
     val price = MutableLiveData<String>()
-    val pin = MutableLiveData<String>()
+//    val pin = MutableLiveData<String>()
 }

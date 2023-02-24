@@ -42,6 +42,7 @@ class BookFragment : Fragment() {
         val price = requireActivity().findViewById<TextView>(R.id.book_price)
 
         val viewModel = ViewModelProvider(requireActivity()).get(BookViewModel::class.java)
+        val viewModelPin = ViewModelProvider(requireActivity()).get(pinViewModel::class.java)
 
         val user_data=requireActivity().intent.getStringExtra("email")
 //        Toast.makeText(requireActivity(),user_data, Toast.LENGTH_LONG).show()
@@ -108,15 +109,17 @@ class BookFragment : Fragment() {
                          if (pin != null) {
                      println("pinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn " + pin)
                     Toast.makeText(requireActivity(),"the pin is "+pin, Toast.LENGTH_LONG).show()
-                             viewModel.pin.value = pin
-                             println(viewModel.pin.value)
+                             viewModelPin.pin.value = pin
+                             println("1  "+viewModelPin.pin.value)
+                             val last = viewModelPin.pin.value
+                             println("2  "+viewModelPin.pin.value)
+                             val showPopup = PopUpFragment()
+                             showPopup.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
 
 
                          } else {Toast.makeText(requireActivity(),"KEMLO DRAHMEK QDFQSDF QSD F QSD FQSD", Toast.LENGTH_LONG).show()
 
                          }
-            val showPopup = PopUpFragment()
-            showPopup.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
 
         }
 
@@ -134,5 +137,8 @@ class BookFragment : Fragment() {
 
 
 
-}}}
+}}
+        }
+
+
 }}
