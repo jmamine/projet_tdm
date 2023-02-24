@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+//import android.R
+
+
+
 
 
 class DetailsFragment : Fragment() {
@@ -33,6 +37,7 @@ class DetailsFragment : Fragment() {
 //        cardView.set = 2 // set the width of the stroke
 //        cardView.strokeColor = ContextCompat.getColor(this, R.color.stroke_color)
         val car = arguments?.getSerializable("car") as Car
+        val viewModel = ViewModelProvider(requireActivity()).get(BookViewModel::class.java)
 
 //        val bundle = bundleOf("car" to data[position])
 
@@ -94,7 +99,23 @@ class DetailsFragment : Fragment() {
         val book = requireActivity().findViewById<Button>(R.id.details_book_button)
 
         book.setOnClickListener {
-            var bundle = bundleOf("car" to car)
+            viewModel.id.value = car.pk.toString()
+            viewModel.marque.value = car.marque
+            viewModel.modele.value = car.modele
+            viewModel.price.value = car.price.toString()
+
+//            val bundle = Bundle()
+//            bundle.putString("id", car.pk.toString()) // Put anything what you want
+//
+//
+//            val fragment2 = BookFragment()
+//            fragment2.setArguments(bundle)
+
+//            fragmentManager
+//                ?.beginTransaction()
+//                ?.replace(R.id.content, fragment2)
+//                ?.commit()
+//            var bundle = bundleOf("car" to car)
 
             view.findNavController().navigate(R.id.action_detailsFragment_to_bookFragment)
         }

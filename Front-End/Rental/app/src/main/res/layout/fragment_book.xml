@@ -186,9 +186,33 @@
                     android:text="28 Oct 2022 - 4 Nov 2222"
                     android:layout_below="@+id/book_pay_cv"
                     android:textSize="16sp"
-                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
-                    android:textStyle="bold"/>
+                    android:layout_alignParentEnd="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/Prime"/>
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/date_picker"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Pick Date"-->
+<!--                    app:cornerRadius="30dp"-->
+<!--                    android:layout_below="@+id/book_pay_cv"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    />-->
+                <EditText
+                    android:id="@+id/date_picker"
+                    android:background="@android:color/transparent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/book_pay_cv"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:hint="Jan 29, 10:30"
+                    android:textColor="@color/Prime"
+                    android:textColorHint="@color/Prime"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
