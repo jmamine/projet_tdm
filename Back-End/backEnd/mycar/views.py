@@ -164,6 +164,52 @@ def logout(request):
 def simple(request):   
     return HttpResponse('it works')     
 
+@csrf_exempt
+def historique (request):
+      if request.method == 'POST':
+       user_email_test= request.POST.get('email')
+
+      user_tset=User.objects.get(email=user_email_test)
+      my_reservations=reservation.objects.filter(User_id=user_tset.pk)
+    
+      
+      
+    
+      data = serializers.serialize('json', my_reservations)
+      json_data = [dict(pk=obj['pk'], **obj['fields']) for obj in json.loads(data)]
+      
+      
+      return JsonResponse( json_data, safe=False)
+
+
+@csrf_exempt
+def cars (request):
+      if request.method == 'POST':
+       user_email_test= request.POST.get('email')
+
+      user_tset=User.objects.get(email=user_email_test)
+      my_reservations=reservation.objects.filter(User_id=user_tset.pk)
+      car_queryset = car.objects.filter(reservation__in=my_reservations, iftaken=True)
+    
+      
+      
+    
+      data = serializers.serialize('json',car_queryset)
+      json_data = [dict(pk=obj['pk'], **obj['fields']) for obj in json.loads(data)]
+      
+      
+      return JsonResponse( json_data, safe=False)
+
+
+   
+      
+
+
+
+
+
+     
+
 
 @csrf_exempt
 def all_objects(request):
@@ -219,12 +265,12 @@ def End_Reservation(request):
       date_fin=request.POST.get('date_fin')
 
     reservation_test = reservation.objects.get(pk=reservation_id_test)
-    for object in reservation_test:
-        object.DateFin = date_fin
-        object.save()
+    reservation_test.DateFin = date_fin
+    reservation_test.save()
 
     car_test=reservation_test.car
     car_test.Pin=None
+    car_test.iftaken=False
     car_test.save()
     
 
@@ -243,21 +289,21 @@ def End_Reservation(request):
 
 
 # Mazal matastithach f postman
-@csrf_exempt
-def filter(request):
-     # get method handler
-     #  searched='IS'
-     if request.method == 'POST':
-      marque_test= request.POST.get('marque')
-      modele_test= request.POST.get('modele')
-      iftaken_test= request.POST.get('iftaken')
-      acceleration_test= request.POST.get('acceleration')
-      seat_test= request.POST.get('seat')
-      price_test= request.POST.get('price')
+# @csrf_exempt
+# def filter(request):
+#      # get method handler
+#      #  searched='IS'
+#      if request.method == 'POST':
+#       marque_test= request.POST.get('marque')
+#       modele_test= request.POST.get('modele')
+#       iftaken_test= request.POST.get('iftaken')
+#       acceleration_test= request.POST.get('acceleration')
+#       seat_test= request.POST.get('seat')
+#       price_test= request.POST.get('price')
       
 
-     list1= car.objects.filter( marque__contains= marque_test)
-     list2=car.objects.filter( modele__contains=modele_test)
+#      list1= car.objects.filter( marque__contains= marque_test)
+#      list2=car.objects.filter( modele__contains=modele_test)
      
     #  list3=car.objects.filter(iftaken= iftaken_test)
     #  list4=car.objects.filter( acceleration= acceleration_test)
@@ -277,7 +323,7 @@ def filter(request):
        
 
     #  list=list1.intersection(list2,list3,list4,list5,list6)
-     list=list1.intersection(list2)
+    #  list=list1.intersection(list2)
 
     #  list=list1.intersection(list1).intersection(list2).intersection(list3).intersection(list4).intersection(list5).intersection(list6)
 
@@ -292,8 +338,79 @@ def filter(request):
       # list= car.objects.filter( marque= marque_test,modele=modele_test,iftaken= iftaken_test,acceleration= acceleration_test,seat=seat_test,price=price_test)
                   
      
-     data = serializers.serialize('json',  list ) 
-     return HttpResponse(data, content_type="text/json-comment-filtered")
+    #  data = serializers.serialize('json',  list ) 
+    #  return HttpResponse(data, content_type="text/json-comment-filtered")
+
+@csrf_exempt
+def filter(request):
+    if request.method == 'POST':
+        marque_test = request.POST.get('marque')
+        modele_test = request.POST.get('modele')
+        iftaken_test = request.POST.get('iftaken')
+        acceleration_test = request.POST.get('acceleration')
+        seat_test = request.POST.get('seat')
+        price_test = request.POST.get('price')
+
+        filters = {}
+
+        if marque_test:
+            filters['marque__contains'] = marque_test
+        if modele_test:
+            filters['modele__contains'] = modele_test
+        if iftaken_test:
+            filters['iftaken'] = iftaken_test
+        if acceleration_test:
+            filters['acceleration__contains'] = acceleration_test
+        if seat_test:
+            filters['seat'] = seat_test
+        if price_test:
+            filters['price'] = price_test
+
+       
+        car_list = car.objects.filter(**filters)
+
+        
+        data = serializers.serialize('json', car_list)
+        json_data = [dict(pk=obj['pk'], **obj['fields']) for obj in json.loads(data)]
+        return HttpResponse(json_data, content_type='application/json')
+    
+@csrf_exempt
+def Lock(request):
+    if request.method == 'POST':
+        marque_test = request.POST.get('marque')
+        modele_test = request.POST.get('modele')
+        iftaken_test = request.POST.get('iftaken')
+        acceleration_test = request.POST.get('acceleration')
+        seat_test = request.POST.get('seat')
+        price_test = request.POST.get('price')
+
+        filters = {}
+
+        if marque_test:
+            filters['marque__contains'] = marque_test
+        if modele_test:
+            filters['modele__contains'] = modele_test
+        if iftaken_test:
+            filters['iftaken'] = iftaken_test
+        if acceleration_test:
+            filters['acceleration__contains'] = acceleration_test
+        if seat_test:
+            filters['seat'] = seat_test
+        if price_test:
+            filters['price'] = price_test
+
+       
+        car_list = car.objects.filter(**filters)
+
+        
+        data = serializers.serialize('json', car_list)
+        json_data = [dict(pk=obj['pk'], **obj['fields']) for obj in json.loads(data)]
+        return HttpResponse(json_data, content_type='application/json')
+
+
+    # Gérer les autres méthodes de requête HTTP si nécessaire
+    # ...
+
 
 # @csrf_exempt
 # def get_image(request):
