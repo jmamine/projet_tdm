@@ -8,6 +8,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,6 +29,7 @@ import okio.IOException
 class HomeFragment : Fragment() {
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,7 +47,10 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         view.layoutManager = layoutManager
         view.adapter = MarqueAdapter(requireContext(), vm.data)
+
         abdou()
+
+
 
 ////        val vp = CarModel()
 //        val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)

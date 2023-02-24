@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center">
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/popup_cv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="8dp"
+        app:strokeColor="@color/grayyy"
+        app:strokeWidth="1.5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="15dp">
+
+
+        <ImageView
+            android:id="@+id/popup_check"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/check"
+            android:layout_centerHorizontal="true"/>
+            <TextView
+                android:id="@+id/popup_success"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservation Successful ! "
+                android:layout_below="@+id/popup_check"
+                android:layout_marginTop="25dp"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/popup_buttonn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DONE"
+                app:cornerRadius="30dp"
+                android:layout_below="@id/popup_success"
+                android:layout_marginTop="25dp"
+                android:layout_centerHorizontal="true"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textColor="@color/black"/>
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

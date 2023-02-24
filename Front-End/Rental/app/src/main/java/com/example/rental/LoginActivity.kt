@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             GlobalScope.launch(Dispatchers.IO) {
             // val response = sendGetRequest(" https://05ad-105-235-129-141.eu.ngrok.io/all_objects/")
-            val response = sendLoginRequest("https://65c6-41-220-149-166.eu.ngrok.io/login/", emailh, passwordh)
+            val response = sendLoginRequest("https://1127-41-220-149-166.eu.ngrok.io/login/", emailh, passwordh)
             //val jsonObject = JSONObject(response)
             //val pk = jsonObject.getInt("pk")
             val gson = Gson()

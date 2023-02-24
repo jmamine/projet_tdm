@@ -3,6 +3,7 @@ package com.example.rental
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -24,6 +25,7 @@ class HomeActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController)
         val navView = findViewById<BottomNavigationView>(R.id.nav_bottom)
         NavigationUI.setupWithNavController(navView,navController)
+
 
         val user_data=intent.getStringExtra("email")
         Toast.makeText(this@HomeActivity,user_data,Toast.LENGTH_LONG).show()
