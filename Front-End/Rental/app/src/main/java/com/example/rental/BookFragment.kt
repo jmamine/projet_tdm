@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -113,8 +114,10 @@ class BookFragment : Fragment() {
                              println("1  "+viewModelPin.pin.value)
                              val last = viewModelPin.pin.value
                              println("2  "+viewModelPin.pin.value)
-                             val showPopup = PopUpFragment()
-                             showPopup.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
+                             //val showPopup = PopUpFragment()
+                             //showPopup.show((activity as AppCompatActivity).supportFragmentManager, "showPopUp")
+                             view.findNavController().navigate(R.id.action_bookFragment_to_notifFragment)
+
 
 
                          } else {Toast.makeText(requireActivity(),"KEMLO DRAHMEK QDFQSDF QSD F QSD FQSD", Toast.LENGTH_LONG).show()

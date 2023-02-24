@@ -46,7 +46,6 @@
                 android:layout_height="wrap_content"
                 android:text="Booked Cars"
                 android:textSize="20sp"
-                android:layout_below="@+id/location"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:layout_marginBottom="10dp"/>

@@ -39,7 +39,7 @@ class NotifFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val url = "https://47e7-41-220-149-145.eu.ngrok.io/resrvation"
+        val url = "https://47e7-41-220-149-145.eu.ngrok.io/resrvation/"
         val user_data=requireActivity().intent.getStringExtra("email")
 
 
@@ -57,18 +57,18 @@ class NotifFragment : Fragment() {
             val gson = Gson()
             val carList = gson.fromJson(response, Array<Book>::class.java)?.toList()
             withContext(Dispatchers.Main){
-                if(carList.isSuccessful){
-                    val car = response.body()
-                    if (car != null){
+                if(carList!= null){
+                    //val car = response.body()
+                    if (carList!= null){
 
                         /* val adapter = MyAdapter(requireActivity(),car)
                          binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
                          binding.recyclerView.adapter = adapter
                          */
-                        val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
+                        val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvBooks)
                         val layoutManagerCars = GridLayoutManager(requireContext(), 2)
                         viewCars.layoutManager = layoutManagerCars
-                        viewCars.adapter = CarAdapter(requireContext(), car as ArrayList<Car>)
+                        viewCars.adapter = BookAdapter(requireContext(), carList as ArrayList<Book>)
 
                     }
                     else{
