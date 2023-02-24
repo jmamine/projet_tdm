@@ -2,18 +2,14 @@ package com.example.rental
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.RecyclerView
 
 
 class DetailsFragment : Fragment() {
@@ -38,6 +34,13 @@ class DetailsFragment : Fragment() {
 //        cardView.strokeColor = ContextCompat.getColor(this, R.color.stroke_color)
         val car = arguments?.getSerializable("car") as Car
 
+//        val bundle = bundleOf("car" to data[position])
+
+
+        // Add the data to the Bundle using a key-value pair
+
+        // Add the data to the Bundle using a key-value pair
+
 
 //        val position = arguments?.getInt("position")
         if (car != null ) {
@@ -47,17 +50,20 @@ class DetailsFragment : Fragment() {
             val carMarque= requireActivity().findViewById (R.id.details_car_marque) as TextView
             carMarque.text = car.marque
 
+
             val carModel= requireActivity().findViewById (R.id.details_car_modele) as TextView
             carModel.text = car.modele
 
             val carCapacity= requireActivity().findViewById (R.id.details_cap_value) as TextView
             carCapacity.text = car.seat.toString()
 
+
             val carAcceleration= requireActivity().findViewById (R.id.details_speed_value) as TextView
             carAcceleration.text = car.acceleration
 
             val carPrice= requireActivity().findViewById (R.id.details_price) as TextView
             carPrice.text = car.price.toString() + "$"
+
 
         }
 //        if (position != null) {
@@ -88,6 +94,8 @@ class DetailsFragment : Fragment() {
         val book = requireActivity().findViewById<Button>(R.id.details_book_button)
 
         book.setOnClickListener {
+            var bundle = bundleOf("car" to car)
+
             view.findNavController().navigate(R.id.action_detailsFragment_to_bookFragment)
         }
 
