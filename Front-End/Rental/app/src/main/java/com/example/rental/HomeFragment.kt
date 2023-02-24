@@ -9,11 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 //import sendGetRequest
 import kotlinx.coroutines.*
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
+import org.json.JSONObject
+import sendLoginRequest
+
 //import com.example.rental.CarList
-import sendGetRequest
+//import sendGetRequest
 
 // import sendLoginRequest
 
@@ -38,7 +43,7 @@ class HomeFragment : Fragment() {
         val layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         view.layoutManager = layoutManager
         view.adapter = MarqueAdapter(requireContext(), vm.data)
-        abdou()
+        //abdou()
 
 ////        val vp = CarModel()
 //        val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
@@ -73,7 +78,7 @@ class HomeFragment : Fragment() {
 //
 //            }
 //        }
-//    }
+ //  }
 
 
 
@@ -84,18 +89,25 @@ class HomeFragment : Fragment() {
 
     fun abdou(){
         GlobalScope.launch(Dispatchers.IO) {GlobalScope.launch(Dispatchers.IO) {
-            val response = sendGetRequest(" https://05ad-105-235-129-141.eu.ngrok.io/all_objects/")
+           // val response = sendGetRequest(" https://05ad-105-235-129-141.eu.ngrok.io/all_objects/")
+            //val response = sendLoginRequest("https://65c6-41-220-149-166.eu.ngrok.io/login/", "amine@amine.amine", "amine")
+            //val jsonObject = JSONObject(response)
+            //val pk = jsonObject.getInt("pk")
+            //val gson = Gson()
+            //val user = gson.fromJson(response, User::class.java)
+            //val userList = gson.fromJson(response, Array<User>::class.java).toList()
 
-            val gson = GsonBuilder().create()
-            val jsonStringWithBraces = "{ \"result\": $response}"
-            val cars = gson.fromJson(jsonStringWithBraces, CarList::class.java)
+
+           // val gson = GsonBuilder().create()
+            //val jsonStringWithBraces = "{ \"result\": $response}"
+            //val cars = gson.fromJson(jsonStringWithBraces, CarList::class.java)
 
             withContext(Dispatchers.Main) {
-                val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
-                val layoutManagerCars = GridLayoutManager(requireContext(), 2)
-                viewCars.layoutManager = layoutManagerCars
-                viewCars.adapter = CarAdapter(requireContext(), cars)
-                Toast.makeText(context,cars.cars[1].marque,Toast.LENGTH_LONG).show()
+                //val viewCars = requireActivity().findViewById<RecyclerView>(R.id.rvCars)
+                //val layoutManagerCars = GridLayoutManager(requireContext(), 2)
+                //viewCars.layoutManager = layoutManagerCars
+                //viewCars.adapter = CarAdapter(requireContext(), cars)
+                Toast.makeText(context,"home fragment" ,Toast.LENGTH_LONG).show()
             }
 
 

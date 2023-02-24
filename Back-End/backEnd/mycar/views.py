@@ -73,10 +73,13 @@ def Registration(request):
 
 @csrf_exempt
 def Login(request):
+     
+     
+
    
-    if request.method == 'POST':
-      email_test= request.POST.get('email')
-      password_test = request.POST.get('password')
+    # if request.method == 'POST':
+    email_test= request.POST.get('email')
+    password_test = request.POST.get('password')
 
 
 
@@ -101,40 +104,44 @@ def Login(request):
 
 
     data = serializers.serialize('json',  user ) 
-    return HttpResponse(data, content_type="text/json-comment-filtered")
+    json_data = [dict(pk=obj['pk'], **obj['fields']) for obj in json.loads(data)]
+    return JsonResponse(json_data, safe=False)
 
 
-@csrf_exempt    
-def Login(request):
+    # HttpResponse( json_data , content_type="text/json-comment-filtered")
+
+
+# @csrf_exempt    
+# def Login(request):
    
-    if request.method == 'POST':
-      email_test= request.POST.get('email')
-      password_test = request.POST.get('password')
+#     if request.method == 'POST':
+#       email_test= request.POST.get('email')
+#       password_test = request.POST.get('password')
 
 
 
-    if not email_test or not  password_test:
-            raise ValidationError("Details not entered.")
+#     if not email_test or not  password_test:
+#             raise ValidationError("Details not entered.")
 
-    if not '@' in email_test:    
-         raise ValidationError("User credentials are not correct.")    
+#     if not '@' in email_test:    
+#          raise ValidationError("User credentials are not correct.")    
             
-    user= User.objects.filter( email=email_test ).filter(password=password_test)
+#     user= User.objects.filter( email=email_test ).filter(password=password_test)
    
-    if not user.exists():
-                raise ValidationError("User credentials are not correct.")
+#     if not user.exists():
+#                 raise ValidationError("User credentials are not correct.")
    
     
-    for object in user:
-        if object.ifLogged:
-            raise ValidationError("User already logged in.")
-        object.ifLogged = True
-        object.token = uuid4()
-        object.save()
+#     for object in user:
+#         if object.ifLogged:
+#             raise ValidationError("User already logged in.")
+#         object.ifLogged = True
+#         object.token = uuid4()
+#         object.save()
 
 
-    data = serializers.serialize('json',  user ) 
-    return HttpResponse(data, content_type="text/json-comment-filtered")
+#     data = serializers.serialize('json',  user ) 
+#     return HttpResponse(data, content_type="text/json-comment-filtered")
 
 @csrf_exempt
 def logout(request):
