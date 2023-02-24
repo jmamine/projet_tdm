@@ -14,6 +14,11 @@ path('resrvation/',views.Reservation,name='reservation'),
 path('EndReservation/',views.End_Reservation,name='endreservation'),
 path('image/',views.get_image,name='get_image'),
 path('simple/',views.simple,name='simple'),
+path('Lock/',views.Lock,name='Lock'),
+# path('UnLock/',views.UnLock,name='UnLock'),
+path('historique/',views.historique,name='historique'),
+path('cars/',views.cars,name='cars'),
+
 
 
 

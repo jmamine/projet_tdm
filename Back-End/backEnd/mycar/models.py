@@ -28,6 +28,7 @@ class car (models.Model):
     seat= models.IntegerField()
     x= models.FloatField()
     y= models.FloatField()
+    
     pic= models.CharField(max_length=255, null=False)
     price= models.FloatField()
     Users = models.ManyToManyField(User, through='reservation')
