@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:textColor="@color/white"/>
+            android:textColor="@color/grayy"/>
         <ImageView
             android:id="@+id/item_car_image"
             android:layout_below="@+id/item_logo"

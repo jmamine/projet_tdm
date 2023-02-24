@@ -74,9 +74,9 @@ def Registration(request):
 @csrf_exempt
 def Login(request):
    
-    if request.method == 'POST':
-      email_test= request.POST.get('email')
-      password_test = request.POST.get('password')
+    # if request.method == 'POST':
+    email_test= request.POST.get('email')
+    password_test = request.POST.get('password')
 
 
 
@@ -104,37 +104,7 @@ def Login(request):
     return HttpResponse(data, content_type="text/json-comment-filtered")
 
 
-@csrf_exempt    
-def Login(request):
-   
-    if request.method == 'POST':
-      email_test= request.POST.get('email')
-      password_test = request.POST.get('password')
 
-
-
-    if not email_test or not  password_test:
-            raise ValidationError("Details not entered.")
-
-    if not '@' in email_test:    
-         raise ValidationError("User credentials are not correct.")    
-            
-    user= User.objects.filter( email=email_test ).filter(password=password_test)
-   
-    if not user.exists():
-                raise ValidationError("User credentials are not correct.")
-   
-    
-    for object in user:
-        if object.ifLogged:
-            raise ValidationError("User already logged in.")
-        object.ifLogged = True
-        object.token = uuid4()
-        object.save()
-
-
-    data = serializers.serialize('json',  user ) 
-    return HttpResponse(data, content_type="text/json-comment-filtered")
 
 @csrf_exempt
 def logout(request):
