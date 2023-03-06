@@ -1,7 +1,9 @@
 from django.db import models
 
+# on utilise django orm pour implementer notre base de donnes 
 
 
+#une table user pour gerer les donnes d utilisateur 
 
 class User(models.Model):
     username = models.CharField(max_length=255, null=False)
@@ -17,7 +19,7 @@ class User(models.Model):
         return "{} -{}".format(self.username, self.email)
 
 
-
+#une table car pour gerer les donnes des voitures
 
 class car (models.Model):
     marque = models.CharField(max_length=255, null=False)
@@ -39,7 +41,7 @@ class car (models.Model):
     def __str__(self):
         return "{} -{}".format(self.marque, self.modele)
 
-
+#une table reservation qui sera l'intermédiaire entre les
 
 class reservation(models.Model):
     User = models.ForeignKey(User,on_delete=models.CASCADE)

@@ -39,7 +39,7 @@ class NotifFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val url = "https://47e7-41-220-149-145.eu.ngrok.io/resrvation/"
+        val url = "https://9d42-41-220-149-145.eu.ngrok.io/resrvation/"
         val user_data=requireActivity().intent.getStringExtra("email")
 
 
